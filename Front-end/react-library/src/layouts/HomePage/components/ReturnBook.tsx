@@ -1,25 +1,32 @@
 import React from 'react';
+import BookModel from "../../../Models/BookModel";
 
-export const ReturnBook = () => {
-  return (
-    <div className='col-xs-6 col-sm-6 col-md-4 col-lg-3 mb-3'>
-      <div className='text-center'>
-        <img
-          src={require('./../../../Images/BooksImages/book-luv2code-1000.png')}
-          width={151}
-          height={200}
-          alt='book'
-        />
+export const ReturnBook: React.FC<{ book: BookModel }> = (props) => {
 
-        <h6 className='mt-2'>
-          <b>Hanon Virtuoso Pianist</b>
-        </h6>
+    return (
+        <div className='col-xs-6 col-sm-6 col-md-4 col-lg-3 mb-3'>
+            <div className='text-center'>
 
-        <p>Charles-Louis Hanon</p>
-        <a className='btn main-color text-white' href='#'>
-          Reserve
-        </a>
-      </div>
-    </div>
-  );
+                {props.book.img ? <img
+                    src={props.book.img}
+                    width={151}
+                    height={200}
+                    alt='book'/> : <img
+                    src={require('../../../Images/BooksImages/default.png')}
+                    width={151}
+                    height={200}
+                    alt='book'
+                />}
+
+                <h6 className='mt-2'>
+                    <b>{props.book.title}</b>
+                </h6>
+
+                <p>{props.book.author}</p>
+                <a className='btn main-color text-white' href='#'>
+                    Reserve
+                </a>
+            </div>
+        </div>
+    );
 };
