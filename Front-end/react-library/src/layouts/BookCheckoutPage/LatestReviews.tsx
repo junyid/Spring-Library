@@ -18,8 +18,8 @@ export const LatestReviews: React.FC<{
                             props.reviews.slice(0, 3).map(review => <Review review={review} key={review.id}/>)
                         }
                         <div className={'m-3'}>
-                            <Link type={'button'} className={'btn main-color btn-md text-white'} to={'#'}>View all
-                                reviews</Link>
+                            <Link type={'button'} className={'btn main-color btn-md text-white'}
+                                  to={`/reviewList/${props.bookId}`}>🔍 All reviews</Link>
                         </div>
                     </> :
                     <div>There are no reviews for this book.</div>
