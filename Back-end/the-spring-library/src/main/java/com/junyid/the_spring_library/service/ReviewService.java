@@ -47,6 +47,7 @@ public class ReviewService {
         if (validateReview != null) {
             return true;
         }
+        System.out.println("Returned False");
         return false;
     }
 }

@@ -1,6 +1,9 @@
 import React from "react";
 import BookModel from "../../Models/BookModel";
 import {Link} from "react-router-dom";
+import {LeaveAReview} from "../Utils/LeaveAReview";
+import {Simulate} from "react-dom/test-utils";
+import submit = Simulate.submit;
 
 export const CheckoutAndReviewsBox: React.FC<{
     book: BookModel | undefined,
@@ -8,7 +11,10 @@ export const CheckoutAndReviewsBox: React.FC<{
     currentLoansCount: number,
     isAuthenticated: any,
     isCheckedOut: boolean,
-    checkoutBook: any
+    checkoutBook: any,
+    isReviewLeft: boolean,
+    submitReview: any,
+
 }> = (props) => {
 
     function buttonRender() {
@@ -19,11 +25,28 @@ export const CheckoutAndReviewsBox: React.FC<{
             } else if (props.isCheckedOut) {
                 return <p><b>✔️ Book checked out, enjoy!</b></p>
             } else if (!props.isCheckedOut) {
-                return <p className={'text-danger'}>❌ Too many books checked out.</p>
+                return <div className="alert alert-danger" role="alert">
+                    ❌ Too many books checked out.
+                </div>
             }
         }
         return <Link to={'/login'} className={'btn btn-success btn-lg'}>Sign in</Link>
     }
+
+
+    function reviewRender() {
+        if (props.isAuthenticated && !props.isReviewLeft) {
+            return <LeaveAReview submitReview={props.submitReview}/>
+        } else if (props.isAuthenticated && props.isReviewLeft) {
+            return <div className="alert alert-success" role="alert">
+                🎉 Thank you for your review
+            </div>
+        }
+        return <div>
+            Sign in to be able to leave a review.
+        </div>
+    }
+
 
     return (
         <div className={props.mobile ? 'card d-flex mt-5' : 'card col-3 container d-flex mb-5'}>
@@ -58,7 +81,7 @@ export const CheckoutAndReviewsBox: React.FC<{
                 <p className={'mt-3'}>
                     This number can change until placing order has been complete.
                 </p>
-                <p>Sign in to be able to leave a review.</p>
+                {reviewRender()}
             </div>
         </div>
     );
