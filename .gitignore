@@ -2,3 +2,4 @@ Back-end/the-spring-library/src/main/resources/application.properties
 /Back-end/the-spring-library/src/main/resources
 /Back-end/the-spring-library/.idea
 .gitignore
+Front-end/react-library/src/lib/oktaConfig.ts
