@@ -1,6 +1,11 @@
 import {Loans} from "./components/Loans";
+import {HistoryPage} from "./components/HistoryPage";
+import {useState} from "react";
 
 export const ShelfPage = () => {
+
+    const [historyClicked, setHistoryClicked] = useState<boolean>(false);
+
 
     return (
         <div className={'container'}>
@@ -8,13 +13,18 @@ export const ShelfPage = () => {
                 <nav className={'nav nav-tabs'} id={'nav-tab'} role={'tablist'}>
                     <button className={'nav-link active'} id={'nav-loans-tab'} data-bs-toggle={'tab'}
                             data-bs-target={'#nav-loans'} type={'button'} role={'tab'} aria-controls={'nav-loans'}
-                            aria-selected={'true'}>
+                            aria-selected={'true'} onClick={() => {
+                        setHistoryClicked(false)
+                    }}>
                         Loans
                     </button>
 
                     <button className={'nav-link'} id={'nav-history-tab'} data-bs-toggle={'tab'}
                             data-bs-target={'#nav-history'}
-                            type={'button'} role={'tab'} aria-controls={'nav-history'} aria-selected={'false'}>
+                            type={'button'} role={'tab'} aria-controls={'nav-history'} aria-selected={'false'}
+                            onClick={() => {
+                                setHistoryClicked(true)
+                            }}>
                         Your History
                     </button>
                 </nav>
@@ -26,7 +36,7 @@ export const ShelfPage = () => {
                     </div>
                     <div className={'tab-pane fade'} id={'nav-history'} role={'tab-panel'}
                          aria-labelledby={'nav-history-tab'}>
-                        <p>Checkout History</p>
+                        {historyClicked && <HistoryPage/>}
                     </div>
                 </div>
             </div>
