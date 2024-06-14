@@ -81,7 +81,7 @@ export const Messages = () => {
                                                 <h6>{message.adminEmail} (librarian)</h6>
                                                 <p>{message.response}</p>
                                             </>
-                                        </> : <p>Waiting for librarian's response</p>}
+                                        </> : <p>⌛ Waiting for a librarian's response</p>}
                                     </div>
                                 </div>
                             </div>
