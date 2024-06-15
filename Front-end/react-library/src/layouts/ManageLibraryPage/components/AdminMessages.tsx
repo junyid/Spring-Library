@@ -25,7 +25,7 @@ export const AdminMessages = () => {
     useEffect(() => {
         const fetchMessages = async () => {
             if (authState && authState?.isAuthenticated) {
-                const response = await fetch(`http://localhost:8080/api/messages/search/findMessagesByClosed/?closed=false&page=${currentPage - 1}&size=${messagesPerPage}`, {
+                const response = await fetch(`${process.env.REACT_APP_API}/messages/search/findMessagesByClosed/?closed=false&page=${currentPage - 1}&size=${messagesPerPage}`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${authState.accessToken?.accessToken}`,
@@ -59,7 +59,7 @@ export const AdminMessages = () => {
     }
 
     async function submitResponse(id: number, response: string) {
-        const url = `http://localhost:8080/api/messages/secure/admin/message`;
+        const url = `${process.env.REACT_APP_API}/messages/secure/admin/message`;
         if (authState?.isAuthenticated && id !== null && response !== '') {
             const messasgeAdminRequestModel: AdminMessageRequest = new AdminMessageRequest(id, response);
             const options = {
