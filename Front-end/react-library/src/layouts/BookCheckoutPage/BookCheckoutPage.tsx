@@ -34,6 +34,10 @@ export const BookCheckoutPage = () => {
     const [isBookCheckedOut, setIsBookCheckedOut] = useState(false);
     const [isBookCheckedOutLoading, setIsBookCheckedOutLoading] = useState(true);
 
+    // payment
+    const [displayError, setDisplayError] = useState(false);
+
+
     const bookId = window.location.pathname.split('/')[2];
 
 
@@ -224,8 +228,10 @@ export const BookCheckoutPage = () => {
         };
         const checkoutResponse = await fetch(url, requestOptions);
         if (!checkoutResponse.ok) {
-            throw new Error('Failed to checkout book :(');
+            setDisplayError(true);
+            return;
         }
+        setDisplayError(false);
         setIsBookCheckedOut(true);
     }
 
@@ -258,6 +264,9 @@ export const BookCheckoutPage = () => {
     return (
         <div>
             <div className={'container d-none d-lg-block'}>
+                {displayError && <div className="alert alert-danger mt-3" role="alert">
+                    Please pay outstanding fees before checking out another book.
+                </div>}
                 <div className={'row mt-5'}>
                     <div className={'col-sm-2 col-md-2'}>
                         {book?.img ?

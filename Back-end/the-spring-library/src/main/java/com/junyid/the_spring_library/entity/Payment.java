@@ -1,0 +1,22 @@
+package com.junyid.the_spring_library.entity;
+
+
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "payment")
+@Data
+public class Payment {
+    @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "user_email")
+    private String userEmail;
+
+    @Column(name = "amount")
+    private double amount;
+}

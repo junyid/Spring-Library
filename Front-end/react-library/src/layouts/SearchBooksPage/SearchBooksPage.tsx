@@ -69,7 +69,7 @@ export const SearchBooksPage = () => {
 
         window.scrollTo(0, 0);
 
-    }, [currentPage, searchUrl]);
+    }, [currentPage, searchUrl, booksPerPage]);
 
     if (loading) {
         return <SpinnerLoading/>;

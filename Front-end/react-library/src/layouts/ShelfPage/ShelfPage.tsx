@@ -34,7 +34,7 @@ export const ShelfPage = () => {
                          aria-labelledby={'nav-loans-tab'}>
                         <Loans/>
                     </div>
-                    <div className={'tab-pane fade'} id={'nav-history'} role={'tab-panel'}
+                    <div className={'tab-pane fade'} id={'nav-history'} role={'tabpanel'}
                          aria-labelledby={'nav-history-tab'}>
                         {historyClicked && <HistoryPage/>}
                     </div>
